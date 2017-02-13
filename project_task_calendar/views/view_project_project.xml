@@ -42,50 +42,6 @@
         </field>
     </record>
 
-    <record id="view_project_task_adjust_form" model="ir.ui.view">
-        <field name="name">view.project.task.adjust.form</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_form2"/>
-        <field name="arch" type="xml">
-
-            <xpath expr="//field[@name='partner_id']" position="replace"/>
-            <xpath expr="//field[@name='user_id']" position="replace"/>
-
-            <xpath expr="//field[@name='displayed_image_id']" position="replace"/>
-            <xpath expr="//field[@name='project_id']" position="after">
-                <field name="partner_id" readonly="1"/>
-                <field name="user_id"/>
-            </xpath>
-
-            <xpath expr="//field[@name='partner_id']" position="attributes">
-                <attribute name="related">project_id.partner_id</attribute>
-            </xpath>
-
-        </field>
-    </record>
-
-    <record id="multi_task_type_edit" model="ir.ui.view">
-        <field name="name">multi.project.task.type.form</field>
-        <field name="model">project.task.type</field>
-        <field name="inherit_id" ref="project.task_type_edit"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='fold']" position="after">
-                <field name="is_default"/>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="multi_task_type_tree" model="ir.ui.view">
-        <field name="name">project.task.type.tree</field>
-        <field name="model">project.task.type</field>
-        <field name="inherit_id" ref="project.task_type_tree"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='fold']" position="after">
-                <field name="is_default"/>
-            </xpath>
-        </field>
-    </record>
-
     <record id="project_project_view_form_simplified" model="ir.ui.view">
         <field name="name">project.project.view.form.simplified</field>
         <field name="model">project.project</field>
@@ -98,14 +54,6 @@
                 <field name="partner_id" required="True"/>
             </xpath>
         </field>
-    </record>
-
-    <record id="project.action_view_task" model="ir.actions.act_window">
-        <field name="name">Tasks</field>
-        <field name="res_model">project.task</field>
-        <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
-        <field name="context">{'search_default_Stage': 1}</field>
-        <field name="search_view_id" ref="project.view_task_search_form"/>
     </record>
 
     <record id="multi_view_config_settings" model="ir.ui.view">

@@ -13,20 +13,20 @@ class ProjectProject(models.Model):
     partner_ids = fields.Many2many(comodel_name='res.partner',
                                    string='Related Partners')
 
-    calendar_event_ids = fields.One2many(comodel_name="calendar.event",
-                                         inverse_name="project_id",
-                                         string="Calendar Events")
+    calendar_event_ids = fields.One2many(comodel_name='calendar.event',
+                                         inverse_name='project_id',
+                                         string='Calendar Events')
 
     bring_default_task_type = fields.Boolean(
-        string="Get default stages",
-        help="Add to this project, all stage defined like default")
+        string='Get default stages',
+        help='Add to this project, all stage defined like default')
 
     @api.model
-    def create(self, vals):
-        vals['partner_ids'] = [(4, vals['partner_id'])]
-        res = super(ProjectProject, self).create(vals)
+    def create(self, values):
+        values['partner_ids'] = [(4, values['partner_id'])]
+        res = super(ProjectProject, self).create(values)
 
-        if vals.get('bring_default_task_type'):
+        if values.get('bring_default_task_type'):
             task_types = self.env['project.task.type'].search([(
                 'is_default', '=', 'True')])
             for rec in task_types:
@@ -36,10 +36,19 @@ class ProjectProject(models.Model):
 
     @api.multi
     def write(self, values):
-        # Add code here
         if 'partner_id' in values:
             values['partner_ids'] = [(4, values['partner_id'])]
         return super(ProjectProject, self).write(values)
+
+
+class ProjectTask(models.Model):
+
+    _inherit = 'project.task'
+
+    calendar_event_ids = fields.One2many(comodel_name='calendar.event',
+                                         inverse_name='project_id',
+                                         readonly=True,
+                                         string='Calendar Events')
 
 
 class ProjectTaskType(models.Model):

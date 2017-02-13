@@ -23,6 +23,7 @@
     'data': [
         'views/view_calendar.xml',
         'views/view_project_project.xml',
+        'views/view_project_task.xml',
     ],
     'installable': True,
 }
