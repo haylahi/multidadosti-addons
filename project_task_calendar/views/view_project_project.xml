@@ -27,10 +27,10 @@
             <xpath expr="//group[@name='misc']" position="replace"/>
 
             <xpath expr="//notebook" position="inside">
-                <page string="Calendario">
+                <page string="Calendar Events">
                     <field name="calendar_event_ids" widget="many2many"/>
                 </page>
-                <page string="Parceiros Relacionados">
+                <page string="Related Partners">
                     <field name="partner_ids" widget="many2many"/>
                 </page>
             </xpath>
@@ -106,13 +106,6 @@
         <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
         <field name="context">{'search_default_Stage': 1}</field>
         <field name="search_view_id" ref="project.view_task_search_form"/>
-        <field name="help" type="html">
-            <p>
-                Odoo's project management allows you to manage the
-                pipeline of your tasks efficiently. You can track progress,
-                discuss on tasks, attach documents, etc.
-            </p>
-        </field>
     </record>
 
     <record id="multi_view_config_settings" model="ir.ui.view">

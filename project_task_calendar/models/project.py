@@ -11,17 +11,15 @@ class ProjectProject(models.Model):
     _inherit = 'project.project'
 
     partner_ids = fields.Many2many(comodel_name='res.partner',
-                                   string='Parceiros Relacionados')
+                                   string='Related Partners')
 
     calendar_event_ids = fields.One2many(comodel_name="calendar.event",
                                          inverse_name="project_id",
-                                         string=u"Eventos de Calendário")
+                                         string="Calendar Events")
 
     bring_default_task_type = fields.Boolean(
-        string=u"Trazer estágios padronizados",
-        help=u"Atribui ao atual projeto, todos"
-             u" os estágios que foram criados "
-             u"com status Padrão")
+        string="Get default stages",
+        help="Add to this project, all stage defined like default")
 
     @api.model
     def create(self, vals):
@@ -48,9 +46,10 @@ class ProjectTaskType(models.Model):
 
     _inherit = 'project.task.type'
 
-    is_default = fields.Boolean(string=u"Padrão",
-                                help=u"Permite Atribuição do atual estágio"
-                                     u" a novos projetos que serão criados")
+    is_default = fields.Boolean(string='Default',
+                                help='Allows assignment of the current stage '
+                                     'to new projects that will be created.')
 
     _sql_constraints = [('project_task_type_name_uniq', 'unique (name)',
-                         u"Já existe um estágio com esse mesmo nome!")]
+                         'Already stage with same name!')]
+
